@@ -17,6 +17,7 @@ function evaluateCondition(row, clause) {
 async function executeSELECTQuery(query) {
     const { fields, table, whereClauses } = parseQuery(query);
     const data = await readCSV(`${table}.csv`);
+    
 
     const filteredData = whereClauses.length > 0
         ? data.filter(row => whereClauses.every(clause => evaluateCondition(row, clause)))
